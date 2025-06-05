@@ -39,6 +39,9 @@ def main():
 
         r = s.get(f"https://api.innovorder.fr/customers/{customer_id}/balance", headers=headers)
         rr = r.json()
+        if not r.ok:
+            message_box("Tapudsou", f"Erreur lors de la requête:\n{rr['message']}")
+            return
         balance = rr['data']['customerBalance']
         balance = float(balance) / 100.
 
